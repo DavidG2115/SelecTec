@@ -17,7 +17,7 @@ function JobListings() {
     setTimeout(() => {
       const simulatedJobs = [
         // Categoría: Diseño
-        { id: 1, title: "Diseñador Gráfico", company: "Creativos Unidos", location: "Monterrey, Nuevo León", type: "Medio tiempo", salary: "$10,000.00 (Mensual)", category: "Diseño", description: "Creación de contenido visual para campañas de marketing...", highlighted: false },
+        { id: 1, title: "Diseñador Gráfico", company: "Creativos Unidos", location: "Monterrey, Nuevo León", type: "Medio tiempo", salary: "$10,000.00 (Mensual)", category: "Diseño", description: "Creación de contenido visual para campañas de marketing...", logo: ".", highlighted: false },
         { id: 2, title: "Diseñador UI/UX", company: "Tech Design Studio", location: "Ciudad de México", type: "Remoto", salary: "$18,000.00 (Mensual)", category: "Diseño", description: "Desarrollar interfaces de usuario atractivas y funcionales...", highlighted: true },
     
         // Categoría: Ventas
