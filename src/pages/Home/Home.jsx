@@ -65,9 +65,9 @@ export default function Home() {
         <div>
             <Logos />
         </div>
-        <div>
-            <Categories />
-        </div>
+        
+        <Categories />
+        
         <div>
             <FeaturedJobs />
         </div>

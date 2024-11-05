@@ -1,7 +1,6 @@
 // routes.jsx
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-
 // Importación de páginas
 import Home from './pages/Home/home.jsx';
 import Login from './pages/Auth/login';
@@ -11,6 +10,8 @@ import EditProfilePage from './pages/Student/EditProfilePage';
 import ProfilePage from './pages/Student/ProfilePage.jsx';
 import CompanyProfilePage from './pages/Company/CompanyProfilePage.jsx';
 import EditCompanyProfilePage from './pages/Company/EditCompanyProfilePage.jsx';
+import JobListings from './components/JobListing';
+import JobList from './components/JobList';
 
 function AppRoutes() {
     return (
@@ -27,12 +28,12 @@ function AppRoutes() {
                 <Route path="/student/profile" element={<ProfilePage />} />
 
                 {/* Rutas Empresas */}
-            
                 <Route path="/company/profile" element={<CompanyProfilePage />} />
                 <Route path="/company/profile/edit" element={<EditCompanyProfilePage />} />
 
-
-
+                {/* Rutas de Empleos */}
+                <Route path="/jobs/:category" element={<JobListings />} />
+                <Route path="/jobs" element={<JobList />} />
             </Routes>
         </Router>
     );
