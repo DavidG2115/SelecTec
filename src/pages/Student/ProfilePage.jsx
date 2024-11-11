@@ -1,5 +1,5 @@
 // ProfilePage.jsx
-import React from "react";
+import { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { useNavigate } from "react-router-dom";
@@ -7,9 +7,64 @@ import { FaPen, FaProjectDiagram, FaUserGraduate, FaCertificate, FaLanguage, FaB
 
 const ProfilePage = () => {
     const navigate = useNavigate();
+    const [profileData, setProfileData] = useState(null);
+
     const navigateToEditProfilePage = () => {
         navigate("/student/profile/edit");
     };
+
+    // Simular fetch de datos de la API
+    useEffect(() => {
+        const fetchProfileData = async () => {
+            // Datos simulados del perfil del estudiante
+            const simulatedData = {
+                name: "Nombre del Estudiante",
+                program: "Carrera o Programa Académico",
+                profilePicture: "https://images.pexels.com/photos/1438081/pexels-photo-1438081.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                coverLetter: "Soy un estudiante apasionado por la tecnología y el desarrollo de software. Me especializo en el área de desarrollo web y busco oportunidades para poner en práctica mis habilidades en un entorno profesional.",
+                projects: [
+                    {
+                        title: "Nombre del Proyecto",
+                        description: "Descripción breve del proyecto y su propósito.",
+                        technologies: "React, Node.js",
+                        role: "Desarrollador",
+                        githubLink: "https://github.com/usuario/proyecto"
+                    }
+                ],
+                skills: ["Desarrollo Web", "JavaScript y React", "Diseño UI/UX"],
+                courses: [
+                    {
+                        title: "Curso de Desarrollo Web",
+                        platform: "Plataforma Educativa",
+                        year: 2023
+                    }
+                ],
+                certifications: [
+                    {
+                        title: "Certificación en JavaScript Avanzado",
+                        platform: "Plataforma Z",
+                        year: 2023
+                    }
+                ],
+                languages: [
+                    { language: "Inglés", level: "Avanzado (C1)" },
+                    { language: "Español", level: "Nativo" }
+                ],
+                volunteerExperience: [
+                    {
+                        title: "Voluntariado en ONG",
+                        description: "Apoyo en la organización de eventos para recaudar fondos.",
+                        duration: "Enero 2022 - Marzo 2023"
+                    }
+                ],
+                jobPreferences: "Busco oportunidades de pasantía o empleo a tiempo completo en roles de desarrollo web. Prefiero un entorno de trabajo remoto o híbrido."
+            };
+            setProfileData(simulatedData);
+        };
+        fetchProfileData();
+    }, []);
+
+    if (!profileData) return <p className="text-center text-gray-500">Cargando datos del perfil...</p>;
 
     return (
         <>
@@ -20,14 +75,14 @@ const ProfilePage = () => {
                     <div className="max-w-4xl mx-auto flex items-center space-x-6">
                         <div className="w-28 h-28 rounded-full overflow-hidden border-4 border-white">
                             <img
-                                src="https://via.placeholder.com/150"
+                                src={profileData.profilePicture}
                                 alt="Foto de perfil"
                                 className="w-full h-full object-cover"
                             />
                         </div>
                         <div>
-                            <h1 className="text-4xl font-semibold">Nombre del Estudiante</h1>
-                            <p className="text-lg opacity-90">Carrera o Programa Académico</p>
+                            <h1 className="text-4xl font-semibold">{profileData.name}</h1>
+                            <p className="text-lg opacity-90">{profileData.program}</p>
                         </div>
                     </div>
 
@@ -48,7 +103,7 @@ const ProfilePage = () => {
                     <div className="bg-white shadow rounded-lg p-6 border border-gray-200">
                         <h2 className="text-2xl font-semibold text-blue-700 mb-4">Carta de Presentación</h2>
                         <p className="text-gray-700 leading-relaxed">
-                            Soy un estudiante apasionado por la tecnología y el desarrollo de software. Me especializo en el área de desarrollo web y busco oportunidades para poner en práctica mis habilidades en un entorno profesional.
+                            {profileData.coverLetter}
                         </p>
                     </div>
 
@@ -58,15 +113,17 @@ const ProfilePage = () => {
                             <FaProjectDiagram /> Proyectos Realizados
                         </h2>
                         <ul className="space-y-4">
-                            <li>
-                                <h3 className="text-lg font-semibold text-gray-800">Nombre del Proyecto</h3>
-                                <p className="text-gray-600">Descripción breve del proyecto y su propósito.</p>
-                                <p className="text-sm text-gray-500">Tecnologías: React, Node.js</p>
-                                <p className="text-sm text-gray-500">Rol: Desarrollador</p>
-                                <a href="https://github.com/usuario/proyecto" className="text-blue-500 underline">
-                                    Ver en GitHub
-                                </a>
-                            </li>
+                            {profileData.projects.map((project, index) => (
+                                <li key={index}>
+                                    <h3 className="text-lg font-semibold text-gray-800">{project.title}</h3>
+                                    <p className="text-gray-600">{project.description}</p>
+                                    <p className="text-sm text-gray-500">Tecnologías: {project.technologies}</p>
+                                    <p className="text-sm text-gray-500">Rol: {project.role}</p>
+                                    <a href={project.githubLink} className="text-blue-500 underline">
+                                        Ver en GitHub
+                                    </a>
+                                </li>
+                            ))}
                         </ul>
                     </div>
 
@@ -76,9 +133,9 @@ const ProfilePage = () => {
                             <FaUserGraduate /> Habilidades
                         </h2>
                         <ul className="mt-4 list-disc list-inside space-y-2 text-gray-700">
-                            <li>Desarrollo Web</li>
-                            <li>JavaScript y React</li>
-                            <li>Diseño UI/UX</li>
+                            {profileData.skills.map((skill, index) => (
+                                <li key={index}>{skill}</li>
+                            ))}
                         </ul>
                     </div>
 
@@ -88,9 +145,11 @@ const ProfilePage = () => {
                             <FaCertificate /> Cursos Completados
                         </h2>
                         <ul className="mt-4 space-y-4">
-                            <li className="text-gray-700">
-                                <strong>Curso de Desarrollo Web</strong> - Plataforma Educativa (2023)
-                            </li>
+                            {profileData.courses.map((course, index) => (
+                                <li key={index} className="text-gray-700">
+                                    <strong>{course.title}</strong> - {course.platform} ({course.year})
+                                </li>
+                            ))}
                         </ul>
                     </div>
 
@@ -100,9 +159,11 @@ const ProfilePage = () => {
                             <FaCertificate /> Certificaciones
                         </h2>
                         <ul className="mt-4 space-y-4">
-                            <li className="text-gray-700">
-                                <strong>Certificación en JavaScript Avanzado</strong> - Plataforma Z (2023)
-                            </li>
+                            {profileData.certifications.map((certification, index) => (
+                                <li key={index} className="text-gray-700">
+                                    <strong>{certification.title}</strong> - {certification.platform} ({certification.year})
+                                </li>
+                            ))}
                         </ul>
                     </div>
 
@@ -112,8 +173,9 @@ const ProfilePage = () => {
                             <FaLanguage /> Idiomas
                         </h2>
                         <ul className="mt-4 list-disc list-inside space-y-2 text-gray-700">
-                            <li>Inglés - Avanzado (C1)</li>
-                            <li>Español - Nativo</li>
+                            {profileData.languages.map((language, index) => (
+                                <li key={index}>{language.language} - {language.level}</li>
+                            ))}
                         </ul>
                     </div>
 
@@ -123,11 +185,13 @@ const ProfilePage = () => {
                             <FaHandsHelping /> Experiencia Voluntaria o Extracurricular
                         </h2>
                         <ul className="mt-4 space-y-4">
-                            <li>
-                                <h3 className="text-lg font-semibold text-gray-800">Voluntariado en ONG</h3>
-                                <p className="text-gray-600">Apoyo en la organización de eventos para recaudar fondos.</p>
-                                <p className="text-sm text-gray-500">Duración: Enero 2022 - Marzo 2023</p>
-                            </li>
+                            {profileData.volunteerExperience.map((experience, index) => (
+                                <li key={index}>
+                                    <h3 className="text-lg font-semibold text-gray-800">{experience.title}</h3>
+                                    <p className="text-gray-600">{experience.description}</p>
+                                    <p className="text-sm text-gray-500">Duración: {experience.duration}</p>
+                                </li>
+                            ))}
                         </ul>
                     </div>
 
@@ -137,7 +201,7 @@ const ProfilePage = () => {
                             <FaBriefcase /> Preferencias de Empleo
                         </h2>
                         <p className="mt-4 text-gray-700">
-                            Busco oportunidades de pasantía o empleo a tiempo completo en roles de desarrollo web. Prefiero un entorno de trabajo remoto o híbrido.
+                            {profileData.jobPreferences}
                         </p>
                     </div>
                 </div>

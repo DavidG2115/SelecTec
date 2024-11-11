@@ -11,8 +11,8 @@ import ProfilePage from './pages/Student/ProfilePage.jsx';
 import CompanyProfilePage from './pages/Company/CompanyProfilePage.jsx';
 import EditCompanyProfilePage from './pages/Company/EditCompanyProfilePage.jsx';
 import JobListings from './components/JobListing';
-import JobList from './components/JobList';
 import JobDetails from './components/JobDetails';
+import AllJobs from './components/AllJobs';
 
 function AppRoutes() {
     return (
@@ -34,7 +34,7 @@ function AppRoutes() {
 
                 {/* Rutas de Empleos */}
                 <Route path="/jobs/:category" element={<JobListings />} />
-                <Route path="/jobs" element={<JobList />} />
+                <Route path="/jobs" element={<AllJobs />} />
                 <Route path="/job/:id" element={<JobDetails />} />
             </Routes>
         </Router>

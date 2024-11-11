@@ -1,74 +1,88 @@
-import { ArrowRightIcon } from '@heroicons/react/24/outline';
+// JobDetails.jsx
+import PropTypes from 'prop-types';
 
-function LatestJobs() {
-  const jobs = [
-    {
-      title: "Social Media Assistant",
-      company: "Nomad",
-      location: "Paris, France",
-      tags: ["Full-Time", "Marketing", "Diseño"],
-      logo: "/nomad_logo.png",
-    },
-    {
-      title: "Brand Designer",
-      company: "Dropbox",
-      location: "San Francisco, USA",
-      tags: ["Full-Time", "Marketing", "Diseño"],
-      logo: "/dropbox_logo.png",
-    },
-    // Añade más trabajos aquí...
-  ];
+function JobDetails({ job }) {
+  if (!job) {
+    return <p className="text-gray-500 w-full text-center py-6">Selecciona un empleo para ver los detalles.</p>;
+  }
 
   return (
-    <section className="relative w-full py-12 px-8 md:px-20 bg-gradient-to-r from-gray-50 to-gray-100 overflow-hidden">
-      {/* Elementos geométricos en el fondo */}
-      <div className="absolute -top-10 -left-20 w-80 h-80 bg-purple-100 opacity-30 rounded-full blur-xl"></div>
-      <div className="absolute -bottom-10 -right-20 w-80 h-80 bg-blue-100 opacity-30 rounded-full blur-xl"></div>
-
-      {/* Título y enlace de "Mostrar todo" */}
-      <div className="relative z-10 flex justify-between items-center mb-8">
-        <h2 className="text-2xl md:text-3xl font-bold text-[#202430]">
-          Últimos <span className="text-[#26a3ff]">trabajos abiertos</span>
-        </h2>
-        <a href="#" className="text-[#4640de] font-semibold text-sm md:text-base flex items-center hover:underline">
-          Mostrar todo <ArrowRightIcon className="w-4 h-4 ml-1" />
-        </a>
+    <div className="space-y-8 p-6 bg-white shadow-lg rounded-lg">
+      {/* Encabezado del Empleo */}
+      <div className="flex items-center space-x-6">
+        <div className="w-16 h-16 mr-4 rounded-full overflow-hidden shadow-sm flex items-center justify-center">
+          <img
+            src={job.logo || "/placeholder_logo.png"}
+            alt={`${job.company} logo`}
+            className="w-full h-full object-contain"
+          />
+        </div>
+        <div>
+          <h2 className="text-3xl font-semibold text-blue-600">{job.title}</h2>
+          <p className="text-lg text-gray-700 mt-1">{job.company}</p>
+          <p className="text-sm text-gray-500 mt-1">{job.location} - {job.type}</p>
+        </div>
       </div>
 
-      {/* Grid de trabajos */}
-      <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-6">
-        {jobs.map((job, index) => (
-          <div key={index} className="bg-white border rounded-lg p-4 shadow-sm hover:shadow-lg transition">
-            <div className="flex items-center mb-4">
-              {/* Logo de la empresa */}
-              <img src={job.logo} alt={`${job.company} logo`} className="w-12 h-12 mr-3 rounded-full object-contain" />
-              <div>
-                <h3 className="text-lg font-semibold text-[#202430]">{job.title}</h3>
-                <p className="text-sm text-gray-500">{job.company} • {job.location}</p>
-              </div>
-            </div>
-
-            {/* Etiquetas */}
-            <div className="flex flex-wrap gap-2 mt-2">
-              {job.tags.map((tag, idx) => (
-                <span
-                  key={idx}
-                  className={`text-xs font-medium px-2 py-1 rounded-full ${
-                    tag === "Full-Time" ? "bg-green-100 text-green-600" :
-                    tag === "Marketing" ? "bg-orange-100 text-orange-600" :
-                    tag === "Diseño" ? "bg-purple-100 text-purple-600" :
-                    "bg-blue-100 text-blue-600"
-                  }`}
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
+      {/* Etiquetas */}
+      <div className="flex flex-wrap gap-2 mt-4">
+        {job.tags?.map((tag, idx) => (
+          <span
+            key={idx}
+            className={`text-xs font-medium px-2 py-1 rounded-full ${
+              tag === "Full-Time" ? "bg-green-100 text-green-600" :
+              tag === "Marketing" ? "bg-orange-100 text-orange-600" :
+              tag === "Diseño" ? "bg-purple-100 text-purple-600" :
+              "bg-blue-100 text-blue-600"
+            }`}
+          >
+            {tag}
+          </span>
         ))}
       </div>
-    </section>
+
+      {/* Salario */}
+      <p className="text-xl text-gray-800 font-semibold mt-6">{job.salary}</p>
+
+      {/* Botón de Postulación */}
+      <button className="mt-6 w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+        Postularme
+      </button>
+
+      {/* Opciones de Interacción */}
+      <div className="flex space-x-6 mt-6 justify-center text-gray-500">
+        <button className="hover:text-blue-600">❤️ Guardar</button>
+        <button className="hover:text-blue-600">🔄 Compartir</button>
+        <button className="hover:text-blue-600">Más opciones...</button>
+      </div>
+
+      {/* Descripción y Requisitos */}
+      <div className="mt-8">
+        <h3 className="text-xl font-semibold text-gray-800">Descripción</h3>
+        <p className="text-gray-700 mt-2 leading-relaxed">{job.description}</p>
+
+        <h3 className="text-xl font-semibold text-gray-800 mt-6">Requisitos</h3>
+        <ul className="list-disc list-inside text-gray-700 space-y-2 mt-2">
+          <li>Requisito 1</li>
+          <li>Requisito 2</li>
+          <li>Requisito 3</li>
+        </ul>
+      </div>
+    </div>
   );
 }
 
-export default LatestJobs;
+JobDetails.propTypes = {
+  job: PropTypes.shape({
+    title: PropTypes.string,
+    company: PropTypes.string,
+    location: PropTypes.string,
+    type: PropTypes.string,
+    salary: PropTypes.string,
+    description: PropTypes.string,
+    tags: PropTypes.arrayOf(PropTypes.string),
+    logo: PropTypes.string,
+  }),
+};
+
+export default JobDetails;

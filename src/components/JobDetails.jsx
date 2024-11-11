@@ -7,25 +7,29 @@ function JobDetails({ job }) {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 p-6 bg-white shadow-lg rounded-lg">
       {/* Encabezado del Empleo */}
-      <div className="flex items-center space-x-4">
-        <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden">
-          <img src={job.logo || "/placeholder_logo.png"} alt={`${job.company} logo`} className="object-cover w-full h-full" />
+      <div className="flex items-center space-x-6">
+        <div className="relative w-28 h-28 rounded-full overflow-hidden shadow-lg flex items-center justify-center">
+          <img
+            src={job.logo || "/placeholder_logo.png"}
+            alt={`${job.company} logo`}
+            className="w-full h-ful items-center object-contain object-center"
+          />
         </div>
         <div>
-          <h2 className="text-2xl font-semibold text-blue-600">{job.title}</h2>
-          <p className="text-lg text-gray-700">{job.company}</p>
-          <p className="text-sm text-gray-500">{job.location} - {job.type}</p>
+          <h2 className="text-3xl font-semibold text-blue-600">{job.title}</h2>
+          <p className="text-lg text-gray-700 mt-1">{job.company}</p>
+          <p className="text-sm text-gray-500 mt-1">{job.location} - {job.type}</p>
         </div>
       </div>
 
       {/* Etiquetas */}
-      <div className="flex flex-wrap gap-2 mt-2">
+      <div className="flex flex-wrap gap-3 mt-4">
         {job.tags?.map((tag, idx) => (
           <span
             key={idx}
-            className={`text-xs font-medium px-2 py-1 rounded-full ${
+            className={`text-sm font-medium px-3 py-1 rounded-full ${
               tag === "Full-Time" ? "bg-green-100 text-green-600" :
               tag === "Marketing" ? "bg-orange-100 text-orange-600" :
               tag === "Diseño" ? "bg-purple-100 text-purple-600" :
@@ -38,24 +42,24 @@ function JobDetails({ job }) {
       </div>
 
       {/* Salario */}
-      <p className="text-lg text-gray-800 font-semibold">{job.salary}</p>
+      <p className="text-xl text-gray-800 font-semibold mt-6">{job.salary}</p>
 
       {/* Botón de Postulación */}
-      <button className="mt-4 w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+      <button className="mt-6 w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
         Postularme
       </button>
 
       {/* Opciones de Interacción */}
-      <div className="flex space-x-4 mt-6">
-        <button className="text-gray-500 hover:text-blue-600">❤️ Guardar</button>
-        <button className="text-gray-500 hover:text-blue-600">🔄 Compartir</button>
-        <button className="text-gray-500 hover:text-blue-600">Más opciones...</button>
+      <div className="flex space-x-6 mt-6 justify-center text-gray-500">
+        <button className="hover:text-blue-600">❤️ Guardar</button>
+        <button className="hover:text-blue-600">🔄 Compartir</button>
+        <button className="hover:text-blue-600">Más opciones...</button>
       </div>
 
       {/* Descripción y Requisitos */}
-      <div className="mt-6">
+      <div className="mt-8">
         <h3 className="text-xl font-semibold text-gray-800">Descripción</h3>
-        <p className="text-gray-700 mt-2">{job.description}</p>
+        <p className="text-gray-700 mt-2 leading-relaxed">{job.description}</p>
 
         <h3 className="text-xl font-semibold text-gray-800 mt-6">Requisitos</h3>
         <ul className="list-disc list-inside text-gray-700 space-y-2 mt-2">
