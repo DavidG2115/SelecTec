@@ -17,8 +17,8 @@ function JobListings() {
     setTimeout(() => {
       const simulatedJobs = [
         // Categoría: Diseño
-        { id: 1, title: "Diseñador Gráfico", company: "Creativos Unidos", location: "Monterrey, Nuevo León", type: "Medio tiempo", salary: "$10,000.00 (Mensual)", category: "Diseño", description: "Creación de contenido visual para campañas de marketing...", logo: "/citelis_logo.png", highlighted: false },
-        { id: 2, title: "Diseñador UI/UX", company: "Tech Design Studio", location: "Ciudad de México", type: "Remoto", salary: "$18,000.00 (Mensual)", category: "Diseño", description: "Desarrollar interfaces de usuario atractivas y funcionales...",logo: "/cis_logo.png", highlighted: true },
+        { id: 1, title: "Diseñador Gráfico", company: "Citelis", location: "Morelia, Michoacán", type: "Medio tiempo", salary: "$10,000.00 (Mensual)", category: "Diseño", description: "Creación de contenido visual para campañas de marketing...", logo: "/citelis_logo.png", highlighted: false },
+        { id: 2, title: "Diseñador UI/UX", company: "Centro de inteligencia", location: "Ciudad de México", type: "Remoto", salary: "$18,000.00 (Mensual)", category: "Diseño", description: "Desarrollar interfaces de usuario atractivas y funcionales...",logo: "/cis_logo.png", highlighted: true },
     
         // Categoría: Ventas
         { id: 3, title: "Ejecutivo de Ventas", company: "Ventas Globales", location: "Guadalajara, Jalisco", type: "Tiempo completo", salary: "$15,000.00 (Mensual) + comisiones", category: "Ventas", description: "Gestión de ventas y relaciones con clientes...", logo: "/cis_logo.png", highlighted: false },
@@ -69,10 +69,24 @@ function JobListings() {
       setLoading(false);
     }, 1000);
   }, [id]);
+  const handleJobSelect = (job) => {
+    setSelectedJob(job);
+  
+    // Obtener trabajos recientes de localStorage
+    let recentJobs = JSON.parse(localStorage.getItem('recentJobs')) || [];
+  
+    // Agregar el trabajo seleccionado al inicio y evitar duplicados
+    recentJobs = [job, ...recentJobs.filter(j => j.id !== job.id)].slice(0, 5); // Limitar a los últimos 5 trabajos
+  
+    // Guardar la lista actualizada en localStorage
+    localStorage.setItem('recentJobs', JSON.stringify(recentJobs));
+  };
 
   const filteredJobs = category
     ? jobListings.filter(job => job.category.toLowerCase() === category.toLowerCase())
     : jobListings;
+
+  
 
 
     return (
@@ -103,7 +117,7 @@ function JobListings() {
               <>
                 {/* Lista de Empleos con su propio scroll vertical */}
                 <div className="w-1/3 h-full overflow-y-auto bg-white shadow-md rounded-lg p-4">
-                  <JobList jobs={filteredJobs} setSelectedJob={setSelectedJob} />
+                  <JobList jobs={filteredJobs} setSelectedJob={handleJobSelect} />
                 </div>
   
                 {/* Detalles del Empleo, también con su propio scroll vertical */}

@@ -5,6 +5,7 @@ import Categories from '../../components/JobsCategories';
 import FeaturedJobs from '../../components/FeaturedJobs';
 import LatestJobs from '../../components/LatestJobs';
 import Footer from '../../components/Footer';
+import RecentJobs from '../../components/RecentJobs';
 
 export default function Home() {
     return (
@@ -69,6 +70,8 @@ export default function Home() {
         <FeaturedJobs />
         
         <LatestJobs />
+
+        <RecentJobs />
         
         <Footer />
 

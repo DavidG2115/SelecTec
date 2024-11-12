@@ -1,12 +1,27 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 
 export default function Header() {
     const [isAuthenticated, setIsAuthenticated] = useState(true);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const navigate = useNavigate();
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+    const handleLogout = () => {
+        // Elimina todos los datos de localStorage
+        localStorage.clear();
+        
+        // Cambia el estado de autenticación
+        setIsAuthenticated(false);
+        
+        // Cierra el menú
+        setIsMenuOpen(false);
+        
+        // Redirige a la página de inicio de sesión
+        navigate('/login');
+    };
 
     return (
         <header className="relative z-50 bg-white">
@@ -14,11 +29,6 @@ export default function Header() {
                 <div className="flex items-center gap-3">
                     <div className="flex items-center gap-2">
                         <div className="bg-[#4640de] rounded-full w-8 h-8"></div>
-                        {/* <img
-                            src="logo.png" // Ruta de tu logo
-                            alt="Logo"
-                            className="w-10 h-10 object-contain" // Ajusta el tamaño del logo aquí
-                        /> */}
                         <Link to="/" className="text-[#25324b] text-lg md:text-xl font-bold font-['Red Hat Display']">
                             SeleccionaTec
                         </Link>
@@ -67,10 +77,7 @@ export default function Header() {
                                     Configuración
                                 </Link>
                                 <button
-                                    onClick={() => {
-                                        setIsAuthenticated(false);
-                                        setIsMenuOpen(false);
-                                    }}
+                                    onClick={handleLogout} // Llama a handleLogout aquí
                                     className="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
                                 >
                                     Cerrar Sesión
