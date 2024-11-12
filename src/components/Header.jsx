@@ -30,11 +30,11 @@ export default function Header() {
                     <div className="flex items-center gap-2">
                         <div className="bg-[#4640de] rounded-full w-8 h-8"></div>
                         <Link to="/" className="text-[#25324b] text-lg md:text-xl font-bold font-['Red Hat Display']">
-                            SeleccionaTec
+                            UniBridge
                         </Link>
                     </div>
                     <nav className="hidden md:flex gap-6 text-[#515b6f] text-sm md:text-base font-medium">
-                        <Link to="#">Buscar Empleo</Link>
+                        <Link to="/jobs">Buscar Empleo</Link>
                         <Link to="/company/profile">Perfil de Empresas</Link>
                     </nav>
                 </div>

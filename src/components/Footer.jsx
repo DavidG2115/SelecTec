@@ -8,7 +8,7 @@ function Footer() {
         <div className="md:w-1/3">
           <div className="flex items-center mb-2">
             <div className="bg-[#4640de] rounded-full w-6 h-6 mr-2"></div>
-            <h2 className="text-xl font-bold">SeleccionaTec</h2>
+            <h2 className="text-xl font-bold">UniBridge</h2>
           </div>
           <p className="text-gray-400 text-xs">
             La plataforma ideal para estudiantes que buscan impulsar su carrera y encontrar oportunidades en empresas innovadoras.
@@ -61,7 +61,7 @@ function Footer() {
       <div className="border-t border-gray-600 pt-4">
         {/* Derechos reservados y redes sociales */}
         <div className="flex flex-col md:flex-row justify-between items-center text-gray-400 text-xs">
-          <p>2024 @ SeleccionaTec. Todos los derechos reservados.</p>
+          <p>2024 @UniBridge. Todos los derechos reservados.</p>
           <div className="flex gap-3 mt-4 md:mt-0">
             <a href="#" aria-label="Facebook"><FaFacebook className="text-gray-400 hover:text-white transition" /></a>
             <a href="#" aria-label="Instagram"><FaInstagram className="text-gray-400 hover:text-white transition" /></a>
