@@ -6,7 +6,7 @@ import JobDetails from './JobDetails';
 import Header from './Header';
 
 function JobListings() {
-  const { category } = useParams();
+  const { category, id } = useParams();
   const [jobListings, setJobListings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedJob, setSelectedJob] = useState(null);
@@ -55,12 +55,20 @@ function JobListings() {
         { id: 16, title: "Gerente de Recursos Humanos", company: "Empresa Multinacional", location: "Ciudad de México", type: "Tiempo completo", salary: "$25,000.00 (Mensual)", category: "Recursos humanos", description: "Gestión y desarrollo de talento para la organización...", highlighted: false }
       ];
     
-    
+      const sortedJobs = [
+        ...simulatedJobs.filter(job => job.highlighted), // Trabajos destacados
+        ...simulatedJobs.filter(job => !job.highlighted) // Otros trabajos
+      ];
+  
+      setJobListings(sortedJobs);
 
-      setJobListings(simulatedJobs);
+      // Filtra para obtener el trabajo seleccionado si `id` está presente en los parámetros
+      const job = simulatedJobs.find((job) => job.id === parseInt(id));
+      setSelectedJob(job || null);
+
       setLoading(false);
     }, 1000);
-  }, []);
+  }, [id]);
 
   const filteredJobs = category
     ? jobListings.filter(job => job.category.toLowerCase() === category.toLowerCase())

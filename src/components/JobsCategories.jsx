@@ -19,7 +19,7 @@ function JobsCategories() {
 
   const handleCategoryClick = (category) => {
     const categorySlug = category.toLowerCase().replace(/\s+/g, '-');
-    navigate(`/jobs/${categorySlug}`);
+    navigate(`/jobs/category/${categorySlug}`);
   };
   const handleAllJobsClick = () => {
     navigate('/jobs'); // Redirige a la ruta de "Todos los trabajos"

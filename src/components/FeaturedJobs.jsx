@@ -5,9 +5,11 @@ function FeaturedJobs() {
   const navigate = useNavigate();
 
   const jobs = [
-    { id: 1, title: "Desarrollador Backend", company: "InnovaSoft", location: "Ciudad de México", type: "Medio tiempo", salary: "$18,000.00 (Mensual)", category: "Desarrollo", description: "Desarrollo de APIs y lógica de backend para aplicaciones web...", logo: "/amazon_logo.png", highlighted: true },
-    { id: 2, title: "Desarrollador Frontend", company: "StartUp Tech", location: "Remoto", type: "Tiempo completo", salary: "$22,000.00 (Mensual)", category: "Desarrollo", description: "Desarrollo de interfaces de usuario modernas y responsivas...", logo: "/cis_logo.png", highlighted: false },
-    // Añade más trabajos aquí...
+    { id: 1, title: "Diseñador Gráfico", company: "Creativos Unidos", location: "Monterrey, Nuevo León", type: "Medio tiempo", salary: "$10,000.00 (Mensual)", category: "Diseño", description: "Creación de contenido visual para campañas de marketing...", logo: "/citelis_logo.png", highlighted: false },
+    { id: 2, title: "Diseñador UI/UX", company: "Tech Design Studio", location: "Ciudad de México", type: "Remoto", salary: "$18,000.00 (Mensual)", category: "Diseño", description: "Desarrollar interfaces de usuario atractivas y funcionales...",logo: "/cis_logo.png", highlighted: true },
+    { id: 4, title: "Gerente de Ventas", company: "GlobalCom", location: "Lima, Perú", type: "Tiempo completo", salary: "$20,000.00 (Mensual)", category: "Ventas", description: "Liderar el equipo de ventas para alcanzar los objetivos comerciales...", logo: "/cis_logo.png", highlighted: true },
+    // Categoría: Recursos Humanos
+    { id: 15, title: "Especialista en Reclutamiento", company: "HR Solutions", location: "Bogotá", type: "Presencial", salary: "$16,000.00 (Mensual)", category: "Recursos humanos", description: "Gestión y selección de talento para distintas áreas...", highlighted: true },
   ];
 
   const handleJobClick = (id) => {

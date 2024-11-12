@@ -52,7 +52,7 @@ export default function Home() {
                 </div>
 
                 {/* Imagen visible solo en pantallas medianas y más grandes */}
-                <div className="relative w-full md:w-1/2 h-full flex justify-center items-start hidden md:block">
+                <div className="relative w-full md:w-1/2 h-full flex justify-center items-start md:block">
                     <img
                         src="/imgHome.png"
                         alt="Banner"
@@ -62,21 +62,16 @@ export default function Home() {
             </div>
         </div>
 
-        <div>
-            <Logos />
-        </div>
+        <Logos />
         
         <Categories />
         
-        <div>
-            <FeaturedJobs />
-        </div>
-        <div>
-            <LatestJobs />
-        </div>
-        <div>
-            <Footer />
-        </div>
+        <FeaturedJobs />
+        
+        <LatestJobs />
+        
+        <Footer />
+
     </>
   );
 }
