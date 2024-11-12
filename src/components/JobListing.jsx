@@ -4,12 +4,14 @@ import { useParams } from 'react-router-dom';
 import JobList from './JobList';
 import JobDetails from './JobDetails';
 import Header from './Header';
+import { FaSearch } from 'react-icons/fa';
 
 function JobListings() {
   const { category, id } = useParams();
   const [jobListings, setJobListings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedJob, setSelectedJob] = useState(null);
+  const [searchKeyword, setSearchKeyword] = useState(''); // Estado para la palabra clave de búsqueda
 
   useEffect(() => {
     setLoading(true);
@@ -44,7 +46,6 @@ function JobListings() {
         { id: 20, title: "Desarrollador Frontend", company: "StartUp Tech", location: "Ciudad de México", type: "Tiempo completo", salary: "$22,000.00 (Mensual)", category: "Desarrollo", description: "Desarrollo de interfaces de usuario modernas y responsivas...", logo: "/cis_logo.png", highlighted: false },
         { id: 21, title: "Ingeniero DevOps", company: "Innovatech", location: "Remoto", type: "Tiempo completo", salary: "$30,000.00 (Mensual)", category: "Desarrollo", description: "Gestión y automatización de infraestructura en la nube...", logo: "/citelis_logo.png", highlighted: true },
         { id: 22, title: "Analista de Calidad", company: "SoftLabs", location: "Querétaro", type: "Medio tiempo", salary: "$18,000.00 (Mensual)", category: "Desarrollo", description: "Pruebas de calidad y control de errores en aplicaciones web...", logo: "/amazon_logo.png", highlighted: false },
-
     
         // Categoría: Negocios
         { id: 13, title: "Consultor de Negocios", company: "Business Advisors", location: "Ciudad de Panamá", type: "Remoto", salary: "$25,000.00 (Mensual)", category: "Negocios", description: "Asesoramiento en estrategias de negocio para empresas emergentes...", highlighted: true },
@@ -69,6 +70,7 @@ function JobListings() {
       setLoading(false);
     }, 1000);
   }, [id]);
+
   const handleJobSelect = (job) => {
     setSelectedJob(job);
   
@@ -82,54 +84,64 @@ function JobListings() {
     localStorage.setItem('recentJobs', JSON.stringify(recentJobs));
   };
 
-  const filteredJobs = category
-    ? jobListings.filter(job => job.category.toLowerCase() === category.toLowerCase())
-    : jobListings;
+  const handleSearchChange = (e) => {
+    setSearchKeyword(e.target.value);
+  };
 
-  
-
-
+  const filteredJobs = jobListings.filter(job => {
+    const keyword = searchKeyword.toLowerCase();
     return (
-      <>
-        <Header />
-        <div className="flex flex-col w-full h-screen bg-gray-100">
-          
-          {/* Barra de Filtros Fija en la parte superior */}
-          <div className="sticky top-0 z-10 bg-white p-4 shadow-md flex space-x-4 overflow-x-auto scrollbar-hide">
-            {["Ordenar", "Distancia", "Fecha", "Categoría", "Lugar de trabajo", "Experiencia", "Salario", "Jornada", "Contrato", "Discapacidad"].map((filter, index) => (
-              <button
-                key={index}
-                className="text-sm font-semibold px-4 py-2 bg-gray-200 rounded-full hover:bg-gray-300 whitespace-nowrap"
-              >
-                {filter}
-              </button>
-            ))}
-          </div>
-  
-          {/* Contenedor Principal que contiene la lista de empleos y los detalles */}
-          <div className="flex flex-1 h-0 overflow-hidden p-6 space-x-6 mt-2">
-            {loading ? (
-              <div className="flex items-center justify-center w-full h-full text-gray-500 text-xl">
-                <div className="animate-spin h-10 w-10 border-4 border-blue-600 border-t-transparent rounded-full"></div>
-                <span className="ml-3">Cargando empleos...</span>
-              </div>
-            ) : (
-              <>
-                {/* Lista de Empleos con su propio scroll vertical */}
-                <div className="w-1/3 h-full overflow-y-auto bg-white shadow-md rounded-lg p-4">
-                  <JobList jobs={filteredJobs} setSelectedJob={handleJobSelect} />
-                </div>
-  
-                {/* Detalles del Empleo, también con su propio scroll vertical */}
-                <div className="w-2/3 h-full overflow-y-auto bg-white shadow-md rounded-lg p-6">
-                  <JobDetails job={selectedJob} />
-                </div>
-              </>
-            )}
+      job.title.toLowerCase().includes(keyword) ||
+      job.company.toLowerCase().includes(keyword) ||
+      job.location.toLowerCase().includes(keyword) ||
+      job.description.toLowerCase().includes(keyword)
+    );
+  });
+
+  const jobsToShow = filteredJobs.filter(job => !category || job.category.toLowerCase() === category.toLowerCase());
+
+  return (
+    <>
+      <Header />
+      <div className="flex flex-col w-full h-screen bg-gray-100">
+        {/* Barra de Búsqueda */}
+        <div className="bg-white shadow-md p-4 flex items-center justify-center sticky top-0 z-10">
+          <div className="relative w-full md:w-2/3 lg:w-1/2">
+            <input
+              type="text"
+              placeholder="Buscar empleos por título o empresa..."
+              value={searchKeyword}
+              onChange={handleSearchChange}
+              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out shadow-sm"
+            />
+            <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg" />
           </div>
         </div>
-      </>
-    );
-  }
   
-  export default JobListings;
+        {/* Contenedor Principal */}
+        <div className="flex flex-1 h-full overflow-hidden p-6 space-x-6 mt-4">
+          {loading ? (
+            <div className="flex items-center justify-center w-full h-full text-gray-500 text-xl">
+              <div className="animate-spin h-12 w-12 border-4 border-blue-600 border-t-transparent rounded-full"></div>
+              <span className="ml-3 text-gray-600">Cargando empleos...</span>
+            </div>
+          ) : (
+            <>
+              {/* Lista de Empleos */}
+              <div className="w-1/3 h-full max-h-full overflow-y-auto bg-white shadow-lg rounded-lg p-4 transition-all duration-300 ease-in-out hover:shadow-xl">
+                <JobList jobs={jobsToShow} setSelectedJob={handleJobSelect} />
+              </div>
+
+              {/* Detalles del Empleo */}
+              <div className="w-2/3 h-full max-h-full overflow-y-auto bg-white shadow-lg rounded-lg p-6 transition-all duration-300 ease-in-out hover:shadow-xl flex-grow">
+                <JobDetails job={selectedJob} />
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+    </>
+  ); 
+}
+
+export default JobListings;
