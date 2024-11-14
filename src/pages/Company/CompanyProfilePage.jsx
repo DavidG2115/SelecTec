@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { FaPen, FaMapMarkerAlt, FaBriefcase, FaEnvelope, FaPhoneAlt, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaPen, FaMapMarkerAlt, FaBriefcase, FaEnvelope, FaPhoneAlt, FaLinkedin, FaTwitter, FaHome } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const CompanyProfilePage = () => {
@@ -12,14 +12,16 @@ const CompanyProfilePage = () => {
         navigate("/company/profile/edit");
     };
 
-    // Simular fetch de datos de la API
+    const navigateToCompanyHome = () => {
+        navigate("/company/home");
+    };
+
     useEffect(() => {
         const fetchCompanyData = async () => {
-            // Datos simulados de la empresa Amazon
             const simulatedData = {
                 name: "Amazon",
                 industry: "E-commerce y Tecnología",
-                logo: "/amazon_logo.png", // Logo de Amazon
+                logo: "/amazon_logo.png",
                 description: "Amazon es una de las mayores empresas de comercio electrónico y servicios de nube en el mundo. Nos dedicamos a la innovación y al servicio al cliente, ofreciendo una amplia gama de productos y servicios en más de 100 países.",
                 location: "Seattle, Washington, Estados Unidos",
                 jobs: [
@@ -47,7 +49,6 @@ const CompanyProfilePage = () => {
         <>
             <Header />
             <div className="bg-gray-50 min-h-screen py-10">
-                {/* Encabezado con nombre y logo de la empresa */}
                 <div className="bg-blue-800 py-12 text-white relative shadow-lg">
                     <div className="max-w-4xl mx-auto flex items-center space-x-8">
                         <div className="w-36 h-36 rounded-full overflow-hidden border-4 border-white bg-white flex items-center justify-center">
@@ -62,6 +63,15 @@ const CompanyProfilePage = () => {
                             <p className="text-lg opacity-90">{companyData.industry}</p>
                         </div>
                     </div>
+
+                    {/* Botón para navegar al Home de Empresas */}
+                    <button
+                        onClick={navigateToCompanyHome}
+                        className="absolute top-6 left-6 bg-white text-blue-800 px-4 py-2 rounded-full shadow hover:bg-blue-100 transition flex items-center"
+                    >
+                        <FaHome className="mr-2" />
+                        Ir al Home de Empresas
+                    </button>
 
                     {/* Botón de Editar Perfil */}
                     <button

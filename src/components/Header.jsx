@@ -35,7 +35,7 @@ export default function Header() {
                     </div>
                     <nav className="hidden md:flex gap-6 text-[#515b6f] text-sm md:text-base font-medium">
                         <Link to="/jobs">Buscar Empleo</Link>
-                        <Link to="/company/profile">Perfil de Empresas</Link>
+                        {/* <Link to="/company/profile">Perfil de Empresas</Link> */}
                     </nav>
                 </div>
 
@@ -68,6 +68,13 @@ export default function Header() {
                                     onClick={() => setIsMenuOpen(false)}
                                 >
                                     Ver Perfil
+                                </Link>
+                                <Link
+                                    to="/company/profile"
+                                    className="block px-6 py-2 text-gray-700 hover:bg-gray-100"
+                                    onClick={() => setIsMenuOpen(false)}
+                                >
+                                    Ver Perfil Empresa
                                 </Link>
                                 <Link
                                     to="/settings"

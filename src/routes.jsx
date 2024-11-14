@@ -12,6 +12,8 @@ import CompanyProfilePage from './pages/Company/CompanyProfilePage.jsx';
 import EditCompanyProfilePage from './pages/Company/EditCompanyProfilePage.jsx';
 import JobListings from './components/JobListing';
 import AllJobs from './components/AllJobs';
+import CompanyHome from './pages/Company/Sections/Home/CompanyHome';
+import CompanyStudentDetails from './pages/Company/Sections/components/CompanyStudentDetail.jsx';
 
 function AppRoutes() {
     return (
@@ -30,6 +32,10 @@ function AppRoutes() {
                 {/* Rutas Empresas */}
                 <Route path="/company/profile" element={<CompanyProfilePage />} />
                 <Route path="/company/profile/edit" element={<EditCompanyProfilePage />} />
+                <Route path="/company/home" element={<CompanyHome />} />
+                <Route path="/company/student/:id" element={<CompanyStudentDetails />} />
+
+
 
                 {/* Rutas de Empleos */}
                 <Route path="/jobs/category/:category" element={<JobListings />} />

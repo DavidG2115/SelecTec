@@ -7,7 +7,7 @@ const LoginForm = () => {
       {/* Imagen en la mitad derecha */}
       <div className="hidden md:flex md:w-1/2 bg-gray-100 items-center justify-center">
         <img
-          src="https://via.placeholder.com/400x400" // Cambia esta URL por la URL de la imagen que desees usar
+          src="/imagen_loginSelec.jpg" // Cambia esta URL por la URL de la imagen que desees usar
           alt="Decorative illustration"
           className="w-3/4 h-auto object-contain"
         />
@@ -16,12 +16,12 @@ const LoginForm = () => {
       {/* Formulario en la mitad izquierda */}
       <div className="flex items-center justify-center w-full md:w-1/2 p-8 bg-white">
         <div className="w-full max-w-md">
-          <h2 className="text-3xl font-bold mb-6 text-center text-blue-600">Selecciona TecNM</h2>
-          <h3 className="text-2xl font-semibold mb-4">Welcome back</h3>
+          <h2 className="text-3xl font-bold mb-6 text-center text-blue-600">UniBridge</h2>
+          <h3 className="text-2xl font-semibold mb-4">Bienvenido de nuevo</h3>
           <p className="text-gray-500 text-sm mb-8">
-            Start your website in seconds. Don’t have an account?{' '}
+            Eres nuevo en esta plataforma.{' '}
             <Link to="/register" className="text-blue-500 hover:underline">
-              Sign up
+              Registrate
             </Link>
           </p>
           <form>
@@ -34,7 +34,7 @@ const LoginForm = () => {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 font-medium">Password</label>
+              <label className="block text-gray-700 font-medium">Contraseña</label>
               <input
                 type="password"
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -44,17 +44,17 @@ const LoginForm = () => {
             <div className="flex items-center justify-between mb-6">
               <label className="flex items-center text-gray-600">
                 <input type="checkbox" className="mr-2 border-gray-300 focus:ring-blue-500" />
-                Remember me
+                Recuerdame
               </label>
               <Link to="#" className="text-blue-500 text-sm hover:underline">
-                Forgot password?
+                Olvidaste la contraseña?
               </Link>
             </div>
             <button
               type="submit"
               className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300"
             >
-              Sign in
+              Ingresa
             </button>
           </form>
           <div className="flex items-center my-4">

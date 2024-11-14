@@ -1,0 +1,51 @@
+
+[
+    {
+      "id": 1,
+      "name": "Juan Pérez",
+      "major": "Ingeniería en Sistemas",
+      "skills": ["JavaScript", "React", "Node.js"],
+      "summary": "Apasionado por el desarrollo web y la creación de soluciones innovadoras.",
+      "profilePicture": "https://images.pexels.com/photos/17594388/pexels-photo-17594388/free-photo-of-hombre-cuaderno-boligrafo-escritura.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "jobId": 1,
+      "experience": "3 años en desarrollo web en empresas de tecnología.",
+      "education": "Licenciatura en Ingeniería en Sistemas, Universidad Nacional",
+      "projects": ["Plataforma de e-commerce", "Aplicación de redes sociales"]
+    },
+    {
+      "id": 2,
+      "name": "Ana Rodríguez",
+      "major": "Marketing Digital",
+      "skills": ["SEO", "Google Analytics", "Content Marketing"],
+      "summary": "Con un enfoque en la creación de estrategias de marketing digital innovadoras.",
+      "profilePicture": "https://images.pexels.com/photos/29233081/pexels-photo-29233081/free-photo-of-mujer-joven-escribiendo-en-una-acogedora-oficina-en-casa.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "jobId": 2,
+      "experience": "4 años en marketing digital en el sector de tecnología.",
+      "education": "Licenciatura en Mercadotecnia, Universidad de Monterrey",
+      "projects": ["Campaña de marketing para lanzamiento de app", "Optimización SEO para empresa de retail"]
+    },
+    {
+      "id": 3,
+      "name": "Pedro Ramírez",
+      "major": "Diseño Gráfico",
+      "skills": ["Photoshop", "Illustrator", "InDesign"],
+      "summary": "Especializado en diseño visual y branding con un enfoque en UX.",
+      "profilePicture": "https://via.placeholder.com/150",
+      "jobId": 3,
+      "experience": "2 años de experiencia en agencias de publicidad.",
+      "education": "Licenciatura en Diseño Gráfico, Universidad Autónoma de Madrid",
+      "projects": ["Rediseño de identidad visual para marca local", "Creación de assets gráficos para una campaña publicitaria"]
+    },
+    {
+      "id": 4,
+      "name": "Laura González",
+      "major": "Administración de Empresas",
+      "skills": ["Liderazgo", "Gestión de Proyectos", "Microsoft Excel"],
+      "summary": "Experta en gestión de proyectos y liderazgo de equipos.",
+      "profilePicture": "https://via.placeholder.com/150",
+      "jobId": 1,
+      "experience": "5 años en administración y gestión de equipos.",
+      "education": "Maestría en Administración de Empresas, Instituto Tecnológico y de Estudios Superiores de Monterrey",
+      "projects": ["Implementación de CRM para empresa tecnológica", "Optimización de procesos operativos en manufactura"]
+    }
+  ]

@@ -7,7 +7,7 @@ const RegisterForm = () => {
       {/* Imagen en la mitad derecha */}
       <div className="hidden md:flex md:w-1/2 bg-gray-100 items-center justify-center">
         <img
-          src="https://via.placeholder.com/400x400" // Cambia esta URL por la URL de la imagen que desees usar
+          src="/imagen_loginSelec.jpg" // Cambia esta URL por la URL de la imagen que desees usar
           alt="Decorative illustration"
           className="w-3/4 h-auto object-contain"
         />
@@ -16,21 +16,21 @@ const RegisterForm = () => {
       {/* Formulario de Registro */}
       <div className="flex items-center justify-center w-full md:w-1/2 p-8 bg-white">
         <div className="w-full max-w-md">
-          <h2 className="text-3xl font-bold mb-6 text-center text-blue-600">Selecciona TecNM</h2>
-          <h3 className="text-2xl font-semibold mb-4">Create an account</h3>
+          <h2 className="text-3xl font-bold mb-6 text-center text-blue-600">UniBridge</h2>
+          <h3 className="text-2xl font-semibold mb-4">Crea una cuenta</h3>
           <p className="text-gray-500 text-sm mb-8">
-            Join us to start your journey. Already have an account?{' '}
+            Ya tienes cuenta?{' '}
             <Link to="/login" className="text-blue-500 hover:underline">
-              Sign in
+              Ingresa
             </Link>
           </p>
           <form>
             <div className="mb-4">
-              <label className="block text-gray-700 font-medium">Full Name</label>
+              <label className="block text-gray-700 font-medium">Nombre</label>
               <input
                 type="text"
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="John Doe"
+                placeholder="David"
               />
             </div>
             <div className="mb-4">
@@ -42,7 +42,7 @@ const RegisterForm = () => {
               />
             </div>
             <div className="mb-6">
-              <label className="block text-gray-700 font-medium">Password</label>
+              <label className="block text-gray-700 font-medium">Contraseña</label>
               <input
                 type="password"
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -53,7 +53,7 @@ const RegisterForm = () => {
               type="submit"
               className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300"
             >
-              Sign up
+              Registrate
             </button>
           </form>
           <div className="flex items-center my-4">
